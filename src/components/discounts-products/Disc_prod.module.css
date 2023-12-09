@@ -1,9 +1,11 @@
+
+
 .discounts_products {
     max-width: 1024px;
    
-    margin: 0 auto;
+    margin: -11px auto;
     background: url('../../assets/image/main_page.svg');
-    height: 27.5rem;
+    height: 28rem;
     transform:scaleX(-1);
     background-size: contain;
     background-position: center;
@@ -26,30 +28,37 @@
 .section_text {
     color:  #FFF;
     font-family: Montserrat;
-    font-size: 4.55rem;
+    font-size: 4rem;
     font-style: normal;
     font-weight: 700;
     line-height: 110%;
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 4.5rem;
+    padding-bottom: 2rem;
     
    
 }
 
 .section_btn {
-    width: 10.625rem;
-    height: 2.62rem;
+    width: 9.5rem;
+    height: 2.6rem;
     background: #393;
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
-   
-    
-    
-    
+    border: none;
+    border-radius: 0.25rem;
+    transition: transform 500ms ease;
+    cursor: pointer;
+      
 }
+
+.section_btn:hover {
+    transform:scale(1.1);
+}
+
+
 
