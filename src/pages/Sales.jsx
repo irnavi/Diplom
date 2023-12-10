@@ -1,7 +1,12 @@
+import DiscountedItems from "../components/discountedItems/DiscountedItems"
 
 function Sales() {
   return (
-    <div>Sales</div>
+    <>
+
+
+    <DiscountedItems />
+    </>
   )
 }
 
