@@ -1,7 +1,10 @@
+import CategoriesPage from "../components/categoriesPage/CategoriesPage"
 
 function Categories() {
   return (
-    <div>Categories</div>
+    <>
+      <CategoriesPage />
+    </>
   )
 }
 

@@ -1,8 +1,15 @@
 
 
 .categoriesHome {
+    max-width: 1024px;
     margin-top: 3.7rem;
     margin-bottom: 2rem;
+    /* margin: 0 auto; */
+}
+
+.categories_items {
+     /* margin-top: 3.7rem;
+    margin-bottom: 2rem; */
 }
 
 .container {
