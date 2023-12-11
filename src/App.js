@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Footer from './components/footer/Footer';
@@ -8,8 +9,18 @@ import Categories from "./pages/Categories";
 import Products from "./pages/Products";
 import Sales from "./pages/Sales";
 import Cart from "./pages/Cart";
+import { fetchProducts } from "./store/slices/productsSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, []);
+
   return (
     <>
     <Router>

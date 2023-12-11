@@ -1,8 +1,13 @@
+import { useSelector } from "react-redux";
 import styles from "./CategoriesPage.module.css";
 import { Link } from "react-router-dom";
 
 
 function CategoriesPage() {
+
+    const categoriesList = useSelector((state) => state.products.categoriesList)
+    console.log(categoriesList)
+
   return (
     <section className={styles.categoriesPage}>
         <div className={styles.container}>
@@ -17,78 +22,21 @@ function CategoriesPage() {
                         <h2 className={styles.h2_text}>Categories</h2>
                     </div>
                     <div className={styles.wrapper_items}>
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Fertilizer</p>
-                            </div>
-                        </div>
 
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Protective products and septic tanks</p>
-                            </div>
+                        {categoriesList.map((categorItem) => { 
+                           return  <div className={styles.wrapper_item} key={categorItem.id}>
+                             <div className={styles.wrapper_img}>
+                                 <img src={`http://localhost:3333/categories/all${categorItem.image}`} alt="" />
+                             </div>
+                             <div className={styles.wrapper_title}>
+                                 <p className={styles.title_text}>{categorItem.title}</p>
+                             </div>
+                         </div>
+})}
                         </div>
+                       
 
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Planting material</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Tools and equipment</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Home Goods</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Pots and planters</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>For indoor plants</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.wrapper_item}>
-                            <div className={styles.wrapper_img}>
-                                <img src="" alt="" />
-                            </div>
-                            <div className={styles.wrapper_title}>
-                                <p className={styles.title_text}>Garden figures</p>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
