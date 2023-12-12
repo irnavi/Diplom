@@ -26,7 +26,7 @@ function CategoriesPage() {
                         {categoriesList.map((categorItem) => { 
                            return  <div className={styles.wrapper_item} key={categorItem.id}>
                              <div className={styles.wrapper_img}>
-                                 <img src={`http://localhost:3333/categories/all${categorItem.image}`} alt="" />
+                                 <img src={`http://localhost:3333${categorItem.image}`} alt="" />
                              </div>
                              <div className={styles.wrapper_title}>
                                  <p className={styles.title_text}>{categorItem.title}</p>
