@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 function CategoriesPage() {
 
-    const categoriesList = useSelector((state) => state.products.categoriesList)
-    console.log(categoriesList)
+    const categoriesList = useSelector((state) => state.categories.categoriesList)
+    
 
   return (
     <section className={styles.categoriesPage}>

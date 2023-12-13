@@ -1,46 +1,45 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import Error from './pages/Error';
-import Home from './pages/Home';
+import "./App.css";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import Error from "./pages/Error";
+import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import Products from "./pages/Products";
 import Sales from "./pages/Sales";
 import Cart from "./pages/Cart";
-import { fetchProducts } from "./store/slices/productsSlice";
+import { fetchCategories } from "./store/slices/categoriesSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { fetchProducts } from "./store/slices/productsSlice";
 
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchCategories());
+    dispatch(fetchProducts());
   }, []);
+
+  
 
   return (
     <>
-    <Router>
-      <Header />
+      <Router>
+        <Header />
 
-      <Routes>
-           <Route path="/" element={<Home/>} /> 
-           <Route path="/categories" element={<Categories/>} /> 
-           <Route path="/products" element={<Products/>} /> 
-           <Route path="/sales" element={<Sales/>} /> 
-           <Route path="/cart" element={<Cart/>} /> 
-           <Route path="*" element={<Error/>} />
-          
-      </Routes>
-      
-      <Footer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/sales" element={<Sales />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
 
-    </Router>
-    
-      
+        <Footer />
+      </Router>
     </>
   );
 }
