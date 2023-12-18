@@ -157,7 +157,11 @@
     line-height: 126%;
 }
 
-.discountedItems_wrapper {
+
+
+
+
+.productsPage_wrapper {
     max-width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -178,6 +182,13 @@
     border-bottom: 1px solid #DDD;
     position: relative;
     
+}
+
+.product_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.55rem;
+    object-fit: cover;
 }
 
 .sale_absolute {

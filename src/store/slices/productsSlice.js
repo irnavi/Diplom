@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 
- export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+ export const fetchProducts = createAsyncThunk('products/fetchProducts', async (_, { rejectWithValue }) => {
     try {
         const response = await fetch('http://localhost:3333/products/all');
         const data = await response.json();
@@ -10,7 +10,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
         return data;
         
     } catch (error) {
-        console.log(error);
+        return rejectWithValue(error.message)
     }
 });
 
@@ -20,15 +20,20 @@ export const productsSlice = createSlice({
 
     initialState: {
         productsList: [],
+        status: null,
     },
 
     extraReducers: (builder) => {
         builder
-        .addCase(fetchProducts.pending, (state, action) => {})
+        .addCase(fetchProducts.pending, (state) => {
+            state.status = 'pending';
+        })
         .addCase(fetchProducts.fulfilled, (state, action) => {
             state.productsList = action.payload;
         })
-        .addCase(fetchProducts.rejected, (state, action) => {})
+        .addCase(fetchProducts.rejected, (state) => {
+            state.status = 'rejected';
+        })
 
 
     }

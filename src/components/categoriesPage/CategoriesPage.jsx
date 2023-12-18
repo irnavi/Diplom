@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 function CategoriesPage() {
 
-    const categoriesList = useSelector((state) => state.categories.categoriesList)
+    const categoriesList = useSelector((state) => state.categories.categoriesList);
+    console.log(categoriesList)
     
 
   return (
@@ -24,14 +25,14 @@ function CategoriesPage() {
                     <div className={styles.wrapper_items}>
 
                         {categoriesList.map((categorItem) => { 
-                           return  <div className={styles.wrapper_item} key={categorItem.id}>
-                             <div className={styles.wrapper_img}>
-                                 <img src={`http://localhost:3333${categorItem.image}`} alt="" />
-                             </div>
-                             <div className={styles.wrapper_title}>
-                                 <p className={styles.title_text}>{categorItem.title}</p>
-                             </div>
-                         </div>
+                           return  <Link key={categorItem.id} to={`/categories/${categorItem.id}`}><div className={styles.wrapper_item} key={categorItem.id}>
+                           <div className={styles.wrapper_img}>
+                               <img src={`http://localhost:3333${categorItem.image}`} alt="" />
+                           </div>
+                           <div className={styles.wrapper_title}>
+                               <p className={styles.title_text}>{categorItem.title}</p>
+                           </div>
+                       </div></Link>
 })}
                         </div>
                        
