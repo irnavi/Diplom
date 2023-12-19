@@ -33,7 +33,7 @@ export const categoriesSlice = createSlice({
 
     initialState: {
         categoriesList: [],
-        categoryIdList: [],
+        categoryIdList: {},
         status: null,
     },
 

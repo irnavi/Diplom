@@ -1,12 +1,32 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./CategoriesPage.module.css";
 import { Link } from "react-router-dom";
 
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchCategoryId } from "../../store/slices/categorySlice";
 
 function CategoriesPage() {
 
     const categoriesList = useSelector((state) => state.categories.categoriesList);
+   
     console.log(categoriesList)
+
+
+    const { id } = useParams();
+    const dispatch = useDispatch()
+
+    const categoryIdList = useSelector((state) => state.category.categoryIdList);
+    console.log(categoryIdList)
+
+    useEffect(() => {
+        dispatch(fetchCategoryId(id));
+   
+    }, [dispatch]);
+    
+    const categoryIdListData = categoryIdList?.data || [];
+    console.log(categoryIdListData)
+  
     
 
   return (
