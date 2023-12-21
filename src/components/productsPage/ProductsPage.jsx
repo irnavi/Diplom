@@ -1,8 +1,10 @@
 import Filter from "../filter/Filter";
 import ProductCard from "../productCard/ProductCard";
 import styles from "./ProductsPage.module.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "../../store/slices/productsSlice";
 
 
 
@@ -10,6 +12,14 @@ function ProductsPage() {
 
     const productsList = useSelector((state) => state.products.productsList);
     console.log(productsList)
+
+    const { id } = useParams();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProducts(id))
+    }, [dispatch,id])
 
   return (
     <section className={styles.productsPage}>

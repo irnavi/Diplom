@@ -22,7 +22,7 @@ function CategoriesPage() {
     useEffect(() => {
         dispatch(fetchCategoryId(id));
    
-    }, [dispatch]);
+    }, [dispatch, id]);
     
     const categoryIdListData = categoryIdList?.data || [];
     console.log(categoryIdListData)
