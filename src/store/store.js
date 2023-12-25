@@ -5,6 +5,7 @@ import saleReducer from "./slices/salePost";
 import categoryReducer from "./slices/categorySlice"
 import cartReducer from "./slices/cartSlice";
 import singleProductReducer from "./slices/singleProduct";
+import orderReducer from "./slices/orderPost"
 
 export default configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export default configureStore({
     sale: saleReducer,
     category: categoryReducer,
     cart: cartReducer,
-    product: singleProductReducer
+    product: singleProductReducer,
+    order: orderReducer,
 
   },
 });

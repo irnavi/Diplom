@@ -1,7 +1,11 @@
+import CartItems from "../components/cartItems/CartItems"
 
 function Cart() {
   return (
-    <div>Cart</div>
+    <>
+
+    <CartItems />
+    </>
   )
 }
 

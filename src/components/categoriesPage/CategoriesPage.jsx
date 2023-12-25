@@ -45,7 +45,7 @@ function CategoriesPage() {
                     <div className={styles.wrapper_items}>
 
                         {categoriesList.map((categorItem) => { 
-                           return  <Link key={categorItem.id} to={`/categories/${categorItem.id}`}><div className={styles.wrapper_item} key={categorItem.id}>
+                           return  <Link key={categorItem.id} to={`/categories/${categorItem.id}`} className={styles.category_link}><div className={styles.wrapper_item} key={categorItem.id}>
                            <div className={styles.wrapper_img}>
                                <img src={`http://localhost:3333${categorItem.image}`} alt="" />
                            </div>

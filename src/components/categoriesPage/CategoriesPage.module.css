@@ -123,3 +123,6 @@
     line-height: 130%;
 }
 
+.category_link {
+    text-decoration: none;
+}

@@ -102,3 +102,11 @@
     line-height: 130%; 
     text-decoration: line-through;
 }
+
+.prise_sale_none {
+    display: none;
+}
+
+.product_link {
+    text-decoration: none;
+}

@@ -1,26 +1,19 @@
 import styles from "./SingleProductCard.module.css";
 import { fetchProductId } from "../../store/slices/singleProduct";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function SingleProductCard() {
 
   const { product_id } = useParams();
 
-  const productIdList = useSelector((state) => state.product.productIdList[0]);
+  const productIdList = useSelector((state) => state.product.productIdList);
   console.log(productIdList)
 
   const dispatch = useDispatch();
 
-  
-    // const [showFullText, setShowFullText] = useState(false);
-    // const text = productIdList.description;
-  
-  
-    // const toggleText = () => {
-    //   setShowFullText(!showFullText);
-    // };
+
 
   useEffect(() => {
     dispatch(fetchProductId(product_id))
@@ -30,22 +23,33 @@ function SingleProductCard() {
     
   return (
     <section className={styles.singleProductCard}>
-      <div className={styles.container}>
+      {productIdList.map((product) => {
+        return <div className={styles.container}>
         <div className={styles.singleProductCard_items}>
 
           <div className={styles.singleProductCard_img}>
-            <img className={styles.img_item}  src={`http://localhost:3333${productIdList.image}`} alt="" />
+            <img className={styles.img_item}  src={`http://localhost:3333${product.image}`} alt="" />
           </div>
           <div className={styles.singleProductCard_info}>
-            <h3 className={styles.headerFromProduct}>{productIdList.title}</h3>
+            <h3 className={styles.headerFromProduct}>{product.title}</h3>
+
             <div className={styles.pricesFromProduct}>
-              <div className={styles.basicPrice}>
-                <p>${productIdList.discont_price}</p>
+
+              <div className={product.discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
+                <p className={product.discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
+                  ${product.discont_price}</p>
               </div>
-              <div className={styles.throughPrice}>
-                <p>${productIdList.price}</p>
+
+              <div className={product.discont_price === null ? styles.basicPrice : styles.throughPrice}>
+                <p className={product.discont_price === null ? styles.basicPrice : styles.throughPrice}>
+                  ${product.price}</p>
               </div>
-              <div className={styles.saleFromPrice}></div>
+              
+              <div className={product.discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
+                 <p className={product.discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
+                        -{(((product.price - product.discont_price) / product.price) * 100).toFixed(1)}%
+                  </p>
+              </div>
             </div>
 
             <div className={styles.btns_from_cart}>
@@ -59,7 +63,7 @@ function SingleProductCard() {
                   <h4 className={styles.description_header}>Description</h4>
                   <div className={styles.description_text}>
                     <p className={styles.text}>
-                      {productIdList.description}
+                      {product.description}
                     </p>
                     <button className={styles.read_more}>
                       
@@ -72,6 +76,8 @@ function SingleProductCard() {
 
         </div>
       </div>
+      })}
+      
         
     </section>
   )

@@ -52,28 +52,30 @@ function DiscountedItems() {
           <div className={styles.productsPage_wrapper}>
             {discountList.map((product) => {
               return (
-                <div key={product.id} className={styles.product_card}>
-                  <div className={styles.product_img}>
-                    <img src={`http://localhost:3333${product.image}`} alt="" />
-                    <div className={styles.sale_absolute}>
-                      <p className={styles.absolute_text}>-50%</p>
-                    </div>
-                  </div>
+                <Link to={`/products/${product.id}`} className={styles.product_link}><div key={product.id} className={styles.product_card}>
+                <div className={styles.product_img}>
+                  <img src={`http://localhost:3333${product.image}`} alt="" />
+                  <div className={product.discont_price === null ? styles.prise_sale_none : styles.sale_absolute}>
+                       <p className={product.discont_price === null ? styles.prise_sale_none : styles.absolute_text}>
+                        -{(((product.price - product.discont_price) / product.price) * 100).toFixed(1)}%
+                        </p>
+                   </div>
+                </div>
 
-                  <div className={styles.product_info}>
-                    <div className={styles.product_title}>
-                      <p className={styles.title_text}>{product.title}</p>
-                    </div>
-                    <div className={styles.product_prise}>
-                      <p
-                        className={styles.prise_sale}
-                      >{`$${product.discont_price}`}</p>
-                      <p
-                        className={styles.prise_default}
-                      >{`$${product.price}`}</p>
-                    </div>
+                <div className={styles.product_info}>
+                  <div className={styles.product_title}>
+                    <p className={styles.title_text}>{product.title}</p>
+                  </div>
+                  <div className={styles.product_prise}>
+                    <p
+                      className={styles.prise_sale}
+                    >{`$${product.discont_price}`}</p>
+                    <p
+                      className={styles.prise_default}
+                    >{`$${product.price}`}</p>
                   </div>
                 </div>
+              </div></Link>
               );
             })}
           </div>
