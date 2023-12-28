@@ -2,7 +2,7 @@
     display: flex;
     border: 1px solid #DDD;
     border-radius: 0.60rem;
-    height: 8.2rem;
+    height: 9.2rem;
 }
 
 .product_img {
@@ -40,6 +40,13 @@
 .product_title img {
     width: 19px;
     height: 19px;
+    transition: transform 500ms ease;
+
+}
+
+.product_title img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .product_prices {
@@ -121,4 +128,8 @@
     align-self: end;
     
     text-decoration: line-through;
+}
+
+.pr_style_none {
+    display: none;
 }

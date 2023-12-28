@@ -66,7 +66,35 @@ header {
     
 }
 
+.header_cart {
+    position: relative;
+}
+
+.count_cart {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background-color: #339933;
+    top: 0.7rem;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 90%;
+    padding: 0.2rem;
+
+}
+
+.count_none {
+    display: none;
+}
+
 .header_cart img {
+   
     width: 38px;
     height: 48px;
     transition: transform 500ms ease;

@@ -11,6 +11,89 @@
     
 }
 
+
+
+
+.categoriesPage_nav {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+.nav_btn_mainPage {
+    width: 5rem;
+    height: 1.6rem;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    color:  #8B8B8B;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%
+}
+
+.nav_btn_mainPage:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.nav_line {
+    width: 0.7rem;
+    height: 1px;
+    background-color: #DDD;
+}
+
+.nav_btn_categories {
+    width: 5.8rem;
+    height: 1.6rem;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    color:  #8B8B8B;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%;
+
+
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.nav_btn_categories:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.nav_btn_product {
+   
+    height: 1.6rem;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    color:  black;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%;
+    padding: 0 0.5rem;
+}
+
+
+
+
+
+
 .singleProductCard_items {
     width: 100%;
     display: flex;
@@ -118,8 +201,17 @@
     border: 1px solid #DDDDDD;
     border-radius: 0.25rem;
     background-color: #fff;
-    color: #8B8B8B;
-    font-size: 2rem;
+    transition: transform 500ms ease;
+}
+
+.btn_minus:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.btn_minus img {
+    width: 18px;
+    height: 18px;
 }
 
 .quantity_of_product {
@@ -128,6 +220,7 @@
     text-align: center;
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
+    padding-top: 0.5rem;
     
 }
 
@@ -138,10 +231,20 @@
     border: 1px solid #DDDDDD;
     border-radius: 0.25rem;
     background-color: #fff;
-    color: #8B8B8B;
-    font-size: 1.5rem;
     margin-right: 1.7rem;
+    transition: transform 500ms ease;
 }
+
+.btn_plus:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.btn_plus img {
+    width: 18px;
+    height: 18px;
+}
+
 
 .btn_addToCart {
     width: 59%;
@@ -149,7 +252,14 @@
     border-radius: 0.25rem;
     background-color: #393;
     border: none;
+    transition: transform 500ms ease;
 }
+
+.btn_addToCart:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 
 .description_items {
     height: 100%;

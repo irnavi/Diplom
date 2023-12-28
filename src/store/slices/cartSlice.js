@@ -27,10 +27,17 @@ const cartSlice = createSlice({
       localStorage.setItem('item',JSON.stringify(state.list))
     },
 
+
+
+
     countPlus(state,action){
       state.list.find(el  =>  el.id === action.payload).count++
       localStorage.setItem('item',JSON.stringify(state.list))
     },
+    
+
+
+
     
     countMinus(state,action){
     const product =   state.list.find(el  =>  el.id === action.payload)

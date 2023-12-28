@@ -5,6 +5,10 @@
     margin-bottom: 3.7rem;
  }
 
+ .emptyBasket_none {
+   display: none;
+ }
+
  .emptyBasket_text {
     color:  #282828;
     text-overflow: ellipsis;

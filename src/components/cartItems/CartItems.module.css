@@ -26,14 +26,22 @@
 }
 
 
-
+.productCart_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
 .form_items {
     width: 24rem;
-   
+    height: 100%;
     background-color: #F1F3F4;
     border-radius: 0.5rem;
     margin-left: 0.5rem;
+}
+
+.form_items_none {
+    display: none;
 }
 
 .order_details {
