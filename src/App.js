@@ -16,7 +16,7 @@ import { fetchProducts } from "./store/slices/productsSlice";
 
 
 import CategoryContent from "./components/categoryContent/CategoryContent";
-import SingleProductCard from "./components/singleProductCard/SingleProductCard";
+import SingleProduct from "./pages/SingleProduct";
 
 
 
@@ -44,7 +44,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
            <Route path="/categories/:id" element={<CategoryContent/>} />
           <Route path="/products" element={<Products />} />
-           <Route path="/products/:product_id" element={<SingleProductCard />} />
+           <Route path="/products/:product_id" element={<SingleProduct />} />
 
           <Route path="/sales" element={<Sales />} />
           <Route path="/cart" element={<Cart />} />

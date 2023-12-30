@@ -1,5 +1,5 @@
 import styles from "./SingleProductCard.module.css";
-import { fetchProductId } from "../../store/slices/singleProduct";
+import { countPlus, setItemQuantity } from "../../store/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -7,45 +7,71 @@ import minus from "../../assets/image/icon-minus.svg";
 import plus from "../../assets/image/icon-plus.svg";
 import { Link } from "react-router-dom";
 import { addItemCart } from "../../store/slices/cartSlice";
-// import { countMinus, countPlus } from "../../store/slices/cartSlice";
 
-function SingleProductCard() {
+function SingleProductCard({ single_Product }) {
 
  
+const { id, title, image, description, price, discont_price, categoryId} = single_Product;
 
-  const { product_id } = useParams();
   
-  const productIdList = useSelector((state) => state.product.productIdList);
+  const categoriesList = useSelector((state) => state.categories.categoriesList);
+  const cartList = useSelector((state) => state.cart.list);
+ 
+
+  const categoryTitle = () => {
+    if (categoryId) {
+      const matchingCategory = categoriesList.find((elem) => categoryId === elem.id);
+      return matchingCategory ? matchingCategory.title : null;
+    }
+    return null; 
+  };
+  
+  
+  let titleOfCategory = categoryTitle();
+
   
   const dispatch = useDispatch();
 
-  const [count, setCount] = useState(1);
+  const [localCount, setLocalCount] = useState(1);
 
-  function countPlus() {
-    setCount(count + 1)
+  
+
+  const increment = () => {
+    setLocalCount(carrentCount => carrentCount + 1)
   }
 
-  useEffect(() => {
-    dispatch(fetchProductId(product_id));
+  const addToCart = () => {
     
-  }, [dispatch, product_id]);
+    const productInCart = cartList.find((elem) => elem.id === id )
 
+    if(productInCart) {
+      dispatch(countPlus({ id, count: localCount }))
+    } else {
+      dispatch(addItemCart({ ...single_Product, count: localCount }))
+    }
+  }
+
+  
+
+  
 
     
   return (
+
+    
+
     <section className={styles.singleProductCard}>
-      {productIdList.map((product) => {
-        return <div key={product.id} className={styles.container}>
+      <div key={id} className={styles.container}>
         <div className={styles.categoriesPage_nav}>
                     <Link to='/'><button className={styles.nav_btn_mainPage}>Main page</button></Link>
                     <div className={styles.nav_line}></div>
                     <Link to="/categories"><button className={styles.nav_btn_categories}>Categories</button></Link>
                     <div className={styles.nav_line}></div>
                     
-                    <Link to={`/categories/${product.categoryId}`}><button className={styles.nav_btn_categories}>{product.categoryId}</button></Link>
+                    <Link to={`/categories/${categoryId}`}><button className={styles.nav_btn_categories}>{titleOfCategory}</button></Link>
 
                     <div className={styles.nav_line}></div>
-                    <button className={styles.nav_btn_product}>{product.title}</button>
+                    <button className={styles.nav_btn_product}>{title}</button>
                   
                     
         </div>
@@ -54,38 +80,38 @@ function SingleProductCard() {
         <div className={styles.singleProductCard_items}>
 
           <div className={styles.singleProductCard_img}>
-            <img className={styles.img_item}  src={`http://localhost:3333${product.image}`} alt="" />
+            <img className={styles.img_item}  src={`http://localhost:3333${image}`} alt="" />
           </div>
           <div className={styles.singleProductCard_info}>
-            <h3 className={styles.headerFromProduct}>{product.title}</h3>
+            <h3 className={styles.headerFromProduct}>{title}</h3>
 
             <div className={styles.pricesFromProduct}>
 
-              <div className={product.discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
-                <p className={product.discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
-                  ${product.discont_price}</p>
+              <div className={discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
+                <p className={discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
+                  ${discont_price}</p>
               </div>
 
-              <div className={product.discont_price === null ? styles.basicPrice : styles.throughPrice}>
-                <p className={product.discont_price === null ? styles.basicPrice : styles.throughPrice}>
-                  ${product.price}</p>
+              <div className={discont_price === null ? styles.basicPrice : styles.throughPrice}>
+                <p className={discont_price === null ? styles.basicPrice : styles.throughPrice}>
+                  ${price}</p>
               </div>
               
-              <div className={product.discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
-                 <p className={product.discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
-                        -{(((product.price - product.discont_price) / product.price) * 100).toFixed(1)}%
+              <div className={discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
+                 <p className={discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
+                        -{(((price - discont_price) / price) * 100).toFixed(1)}%
                   </p>
               </div>
             </div>
 
             <div className={styles.btns_from_cart}>
-                <button className={styles.btn_minus} ><img src={minus} alt="minus" /></button>
+                <button className={styles.btn_minus}  ><img src={minus} alt="minus" /></button>
 
-                <div className={styles.quantity_of_product}>{count}</div>
+                <div className={styles.quantity_of_product}>{localCount}</div>
 
-                <button className={styles.btn_plus} onClick={countPlus} ><img src={plus} alt="plus" /></button>
+                <button className={styles.btn_plus} onClick={increment} ><img src={plus} alt="plus" /></button>
 
-                <button className={styles.btn_addToCart} onClick={() => dispatch(addItemCart(product))}>Add to cart</button>
+                <button className={styles.btn_addToCart} onClick={addToCart}>Add to cart</button>
 
             </div>
 
@@ -93,7 +119,7 @@ function SingleProductCard() {
                   <h4 className={styles.description_header}>Description</h4>
                   <div className={styles.description_text}>
                     <p className={styles.text}>
-                      {product.description}
+                      {description}
                     </p>
                     <button className={styles.read_more}>
                       
@@ -106,7 +132,7 @@ function SingleProductCard() {
 
         </div>
       </div>
-      })}
+     
       
         
     </section>

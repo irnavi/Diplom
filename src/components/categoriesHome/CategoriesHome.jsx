@@ -1,9 +1,29 @@
+import { useEffect } from "react";
 import styles from "./CategoriesHome.module.css";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../store/slices/categoriesSlice";
+import CategoriesCarusel from "../CategoriesCarusel/CategoriesCarusel";
 
 
 function CategoriesHome() {
+
+    const categoriesList = useSelector((state) => state.categories.categoriesList);
+    
+        
+
+        const dispatch = useDispatch();
+
+        useEffect(() => {
+            dispatch(fetchCategories());
+          }, [dispatch]);
+
+    
+
+    
+
+        
+
   return (
     <section className={styles.categoriesHome}>
         <div className={`${styles.container} ${styles.categories_items}`}>
@@ -17,38 +37,7 @@ function CategoriesHome() {
                 </div>
             </div>
             <div className={styles.carusel_items}>
-                <div className={styles.carusel_item}>
-                    <div className={styles.carusel_img}>
-                        <img src="" alt="" />
-                    </div>
-                    <div className={styles.carusel_title}>
-                        <p className={styles.title_text}>Fertilizer</p>
-                    </div>
-                </div>
-                <div className={styles.carusel_item}>
-                    <div className={styles.carusel_img}>
-                        <img src="" alt="" />
-                    </div>
-                    <div className={styles.carusel_title}>
-                        <p className={styles.title_text}>Protective products and septic tanks</p>
-                    </div>
-                </div>
-                <div className={styles.carusel_item}>
-                    <div className={styles.carusel_img}>
-                        <img src="" alt="" />
-                    </div>
-                    <div className={styles.carusel_title}>
-                        <p className={styles.title_text}>Planting material	</p>
-                    </div>
-                </div>
-                <div className={styles.carusel_item}>
-                    <div className={styles.carusel_img}>
-                        <img src="" alt="" />
-                    </div>
-                    <div className={styles.carusel_title}>
-                        <p className={styles.title_text}>Tools and equipment</p>
-                    </div>
-                </div>
+               <CategoriesCarusel />
                
             </div>
         </div>
@@ -56,5 +45,6 @@ function CategoriesHome() {
     </section>
   )
 }
+
 
 export default CategoriesHome

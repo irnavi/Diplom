@@ -1,7 +1,29 @@
+import { useSelector } from "react-redux";
 import styles from "./SaleHome.module.css";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function SaleHome() {
+
+    const productsList = useSelector((state) => state.products.productsList);
+
+    const discountList = productsList.filter(
+      (product) => product.discont_price !== null
+    );
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        cssEase: "linear"
+    };
+
   return (
     <section className={styles.saleHome}>
         <div className={styles.container}>
@@ -16,74 +38,30 @@ function SaleHome() {
                     </div>
                 </div>
                 <div className={styles.sale_carusel}>
-                    <div className={styles.product_card}>
+
+                <Slider {...settings}>
+                    {discountList.map((card) => {
+                        return <div key={card.id} className={styles.product_card}>
                         <div className={styles.product_img}>
-                            <img src="" alt="" />
+                            <img src={`http://localhost:3333${card.image}`} alt={card.title} />
                             <div className={styles.sale_absolute}>
                                 <p className={styles.absolute_text}>-50%</p>
                             </div>
                         </div>
                         <div className={styles.product_info}>
                              <div className={styles.product_title}>
-                                 <p className={styles.title_text}>Decorative forged bridge</p>
+                                 <p className={styles.title_text}>{card.title}</p>
                              </div>
                              <div className={styles.product_prise}>
-                                 <p className={styles.prise_sale}>$500</p>
-                                 <p className={styles.prise_default}>$1000</p>
+                                 <p className={styles.prise_sale}>${card.discont_price}</p>
+                                 <p className={styles.prise_default}>${card.price}</p>
                              </div>
                         </div>
                     </div>
-                    <div className={styles.product_card}>
-                    <div className={styles.product_img}>
-                        <img src="" alt="" />
-                        <div className={styles.sale_absolute}>
-                        <p className={styles.absolute_text}>-34%</p>
-                        </div>
-                    </div>
-                    <div className={styles.product_info}>
-                        <div className={styles.product_title}>
-                        <p className={styles.title_text}>Flower basket</p>
-                        </div>
-                        <div className={styles.product_prise}>
-                        <p className={styles.prise_sale}>$100</p>
-                        <p className={styles.prise_default}>$150</p>
-                        </div>
-                    </div>
-                    </div>
-                    <div className={styles.product_card}>
-                    <div className={styles.product_img}>
-                        <img src="" alt="" />
-                        <div className={styles.sale_absolute}>
-                        <p className={styles.absolute_text}>-25%</p>
-                        </div>
-                    </div>
-                    <div className={styles.product_info}>
-                        <div className={styles.product_title}>
-                        <p className={styles.title_text}>Aquarium lock</p>
-                        </div>
-                        <div className={styles.product_prise}>
-                        <p className={styles.prise_sale}>$150</p>
-                        <p className={styles.prise_default}>$200</p>
-                        </div>
-                    </div>
-                    </div>
-                    <div className={styles.product_card}>
-                    <div className={styles.product_img}>
-                        <img src="" alt="" />
-                        <div className={styles.sale_absolute}>
-                        <p className={styles.absolute_text}>-17%</p>
-                        </div>
-                    </div>
-                    <div className={styles.product_info}>
-                        <div className={styles.product_title}>
-                        <p className={styles.title_text}>Secateurs</p>
-                        </div>
-                        <div className={styles.product_prise}>
-                        <p className={styles.prise_sale}>$199</p>
-                        <p className={styles.prise_default}>$240</p>
-                        </div>
-                    </div>
-                    </div>
+                    })}
+                </Slider>
+
+                    
                 </div>
             </div>
         </div>

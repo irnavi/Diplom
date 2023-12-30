@@ -12,7 +12,7 @@
 }
 
 .saleHome_items {
-    max-width: 100%;
+    width: 100%;
     margin-bottom: 3.5rem;
 
 }
@@ -71,28 +71,38 @@
 
 
  .sale_carusel {
-    max-width: 100%;
+    width: 100%;
     height: 19rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
     margin-top: 1.7rem;
 }
 
 .product_card {
-    width: 23%;
-    height: 100%;
-    border: 1px solid #DDD;
-    border-radius: 0.55rem;
+    width: 13.5rem;
+    height: 19rem;
+    margin-bottom: 1rem;
+}
 
+.product_card:hover {
+    cursor: pointer;
 }
 
 .product_img {
-    max-width: 100%;
+    width: 13.5rem;
     height: 12.7rem;
+    border: 1px solid #DDD;
+    border-radius: 0.55rem;
     border-bottom: 1px solid #DDD;
     position: relative;
+    margin: 0 auto;
     
+}
+
+.product_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.55rem;
+    border-bottom: 1px solid #DDD;
+    object-fit: cover;
 }
 
 .sale_absolute {
@@ -118,13 +128,17 @@
 }
 
 .product_info {
-    width: 11rem;
+    width: 13.5rem;
+   
     margin: 0 auto;
     padding-top: 1rem;
+    border-radius: 0.55rem;
+    border-bottom: 1px solid black;
 }
 
 .product_title {
-    max-width: 100%;
+    width: 100%;
+   
    
 }
 
@@ -139,6 +153,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-left: 1rem;
 }
 
 .product_prise {
@@ -146,6 +161,9 @@
     gap: 1rem;
     align-items: flex-end;
     padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    
 }
 
 .prise_sale {

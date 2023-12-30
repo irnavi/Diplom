@@ -9,7 +9,7 @@ export const fetchProductId = createAsyncThunk(
         const response = await fetch(`http://localhost:3333/products/${product_id}`);
         const data = await response.json();
         
-        return data;
+        return data[0];
         
     } catch (error) {
        return rejectWithValue(error.message);
