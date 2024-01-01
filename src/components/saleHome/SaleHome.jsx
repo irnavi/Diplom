@@ -19,13 +19,13 @@ function SaleHome() {
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
+        speed: 3000,
+        autoplaySpeed: 3000,
         cssEase: "linear"
     };
 
   return (
-    <section className={styles.saleHome}>
+    <section id="saleHome_id" className={styles.saleHome}>
         <div className={styles.container}>
             <div className={styles.saleHome_items}>
                 <div className={styles.header_h2}>
@@ -41,11 +41,11 @@ function SaleHome() {
 
                 <Slider {...settings}>
                     {discountList.map((card) => {
-                        return <div key={card.id} className={styles.product_card}>
+                        return <Link key={card.id} to={`/products/${card.id}`} className={styles.carusel_link}><div key={card.id} className={styles.product_card}>
                         <div className={styles.product_img}>
                             <img src={`http://localhost:3333${card.image}`} alt={card.title} />
                             <div className={styles.sale_absolute}>
-                                <p className={styles.absolute_text}>-50%</p>
+                                <p className={styles.absolute_text}>-{(((card.price - card.discont_price) / card.price) * 100).toFixed(1)}%</p>
                             </div>
                         </div>
                         <div className={styles.product_info}>
@@ -57,7 +57,7 @@ function SaleHome() {
                                  <p className={styles.prise_default}>${card.price}</p>
                              </div>
                         </div>
-                    </div>
+                    </div></Link>
                     })}
                 </Slider>
 

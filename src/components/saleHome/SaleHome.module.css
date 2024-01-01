@@ -76,6 +76,11 @@
     margin-top: 1.7rem;
 }
 
+.carusel_link {
+    text-decoration: none;
+}
+
+
 .product_card {
     width: 13.5rem;
     height: 19rem;
