@@ -1,8 +1,7 @@
 import styles from "./SingleProductCard.module.css";
-import { countPlus, setItemQuantity } from "../../store/slices/cartSlice";
+import { countPlus } from "../../store/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import minus from "../../assets/image/icon-minus.svg";
 import plus from "../../assets/image/icon-plus.svg";
 import { Link } from "react-router-dom";
@@ -15,6 +14,7 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
 
   
   const categoriesList = useSelector((state) => state.categories.categoriesList);
+
   const cartList = useSelector((state) => state.cart.list);
  
 
@@ -32,13 +32,25 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
   
   const dispatch = useDispatch();
 
+
+
+
   const [localCount, setLocalCount] = useState(1);
 
-  
 
   const increment = () => {
     setLocalCount(carrentCount => carrentCount + 1)
   }
+  
+  const decrement = () => {
+    if(localCount > 0) {
+      setLocalCount(carrentCount => carrentCount - 1)
+     }
+   
+  }
+
+
+
 
   const addToCart = () => {
     
@@ -105,7 +117,7 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
             </div>
 
             <div className={styles.btns_from_cart}>
-                <button className={styles.btn_minus}  ><img src={minus} alt="minus" /></button>
+                <button className={styles.btn_minus} onClick={decrement} ><img src={minus} alt="minus" /></button>
 
                 <div className={styles.quantity_of_product}>{localCount}</div>
 

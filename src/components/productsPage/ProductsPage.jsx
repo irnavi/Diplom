@@ -3,7 +3,7 @@ import ProductCard from "../productCard/ProductCard";
 import styles from "./ProductsPage.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "../../store/slices/productsSlice";
 
 
@@ -11,7 +11,9 @@ import { fetchProducts } from "../../store/slices/productsSlice";
 function ProductsPage() {
 
     const productsList = useSelector((state) => state.products.productsList);
-    console.log(productsList)
+    
+    const [sort, setSort] = useState('');
+    
 
     const { id } = useParams();
 
@@ -19,7 +21,10 @@ function ProductsPage() {
 
     useEffect(() => {
         dispatch(fetchProducts(id))
-    }, [dispatch,id])
+   
+    }, [dispatch,id]);
+
+
 
   return (
     <section className={styles.productsPage}>
@@ -36,8 +41,8 @@ function ProductsPage() {
                         <h2 className={styles.h2_text}>All products</h2>
                 </div>
 
-                <Filter />
-                <ProductCard productsList={productsList}/>
+                <Filter sort={sort} setSort={setSort}/>
+                <ProductCard productsList={productsList} sort={sort}/>
             
                 
             </div>

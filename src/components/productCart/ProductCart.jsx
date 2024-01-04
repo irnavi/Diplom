@@ -34,8 +34,8 @@ function ProductCart({ image, title, id, price, count, discont_price}) {
 
                                 <button className={styles.btn_plus} onClick={() => dispatch(countPlus(id))}><img className={styles.plus} src={plus} alt="plus" /></button>
 
-                                <p className={discont_price === null ? styles.pr_style_none : styles.pr_sale}>${sumCount}</p>
-                                <p className={discont_price === null ? styles.pr_sale : styles.pr_through}>${sumThroughCount}</p>
+                                <p className={discont_price === null ? styles.pr_style_none : styles.pr_sale}>${sumCount.toFixed(2)}</p>
+                                <p className={discont_price === null ? styles.pr_sale : styles.pr_through}>${sumThroughCount.toFixed(2)}</p>
                                 
                             </div>
                         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { Link, useParams } from "react-router-dom";
 import styles from "./ProductCard.module.css"
 import { useDispatch } from "react-redux";
@@ -7,27 +8,37 @@ import { fetchProducts } from "../../store/slices/productsSlice";
 
 
 
-function ProductCard(props) {
+function ProductCard({ productsList, sort }) {
 
-    const {productsList} = props
+  console.log(productsList)
+
+    
     const visible = true;
     
-    const { id } = useParams;
+    const { id } = useParams();
 
     const dispatch = useDispatch();
 
   useEffect(() => {
+    if (sort)
     dispatch(fetchProducts())
-  }, [dispatch, id]);
+  }, [dispatch, id, sort]);
 
-
+  const newProducts = productsList ? [...productsList].sort((a, b) => {
+    if (sort === 'low-high') {
+      return a.price - b.price
+    } else if (sort === 'high-low'){
+      return b.price - a.price
+    };
+    
+  }) : [];
     
     
 
   return (
     <>
     <div className={styles.productsPage_wrapper}>
-           {productsList.map((product) => { 
+           {newProducts.map((product) => { 
                return <div key={product.id} className={styles.product_card}>
            
                <div className={styles.product_img}>

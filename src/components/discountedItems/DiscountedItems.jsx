@@ -52,7 +52,7 @@ function DiscountedItems() {
           <div className={styles.productsPage_wrapper}>
             {discountList.map((product) => {
               return (
-                <Link to={`/products/${product.id}`} className={styles.product_link}><div key={product.id} className={styles.product_card}>
+                <Link key={product.id} to={`/products/${product.id}`} className={styles.product_link}><div key={product.id} className={styles.product_card}>
                 <div className={styles.product_img}>
                   <img src={`http://localhost:3333${product.image}`} alt="" />
                   <div className={product.discont_price === null ? styles.prise_sale_none : styles.sale_absolute}>

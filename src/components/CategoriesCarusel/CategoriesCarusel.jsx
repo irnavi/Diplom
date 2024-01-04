@@ -14,7 +14,7 @@ function CategoriesCarusel() {
 
 
     const categoriesList = useSelector((state) => state.categories.categoriesList);
-    console.log(categoriesList)
+    
         
 
         const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function CategoriesCarusel() {
         <Slider {...settings}>
 
             {categoriesList.map((item) => {
-                return <Link to={`/categories/${item.id}`}><div key={item.id} className={styles.carusel_item}>
+                return <Link to={`/categories/${item.id}`} key={item.id} className={styles.link_carusel}><div key={item.id} className={styles.carusel_item}>
                 <div className={styles.carusel_img}>
                     <img src={`http://localhost:3333${item.image}`} alt="" />
                 </div>

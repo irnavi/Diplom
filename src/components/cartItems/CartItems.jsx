@@ -19,7 +19,7 @@ function CartItems() {
           return acc + itemTotal;
         }, 0);
       
-        return parseFloat(total.toFixed(2));
+        return total.toFixed(2);
       }
 
 
