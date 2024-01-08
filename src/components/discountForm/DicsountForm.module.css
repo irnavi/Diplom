@@ -14,6 +14,7 @@
 .discountForm_items {
     background: linear-gradient(261deg, #0B710B 32.63%, #393 98.96%);
     border-radius: 0.55rem;
+    height: 100%;
    
 }
 
@@ -55,3 +56,32 @@
  
 }
 
+
+
+@media (max-width: 768px){
+    .item_img img{
+        width: 24rem;
+        bottom: -2.1rem;
+    }
+}
+
+
+@media (max-width: 400px){
+    .discountForm_items{
+        height: 29rem;
+    }
+    .item_h2 h2{
+        font-size: 1.3rem;
+    }
+    .flex_wrapper{
+        flex-direction: column;
+    }
+    .item_img{
+        width: 19rem;
+    }
+    .item_img img{
+        width: 19rem;
+        left: 0.5rem;
+        bottom: -12.2rem;
+    }
+}

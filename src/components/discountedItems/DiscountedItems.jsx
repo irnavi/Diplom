@@ -28,23 +28,28 @@ function DiscountedItems() {
           </div>
 
           <div className={styles.discountedItems_filter}>
-            <p className={styles.filter_price}>Price</p>
-            <input className={styles.inp_from} type="text" placeholder="from" />
-            <input className={styles.inp_to} type="text" placeholder="to" />
-
-            <label className={styles.label_sort} htmlFor="products_select">
-              Sorted
-            </label>
-            <select
-              className={styles.select_sort}
-              name="products_select"
-              id="products_select"
-            >
-              <option value="by default">by default</option>
-              <option value="newest">newest</option>
-              <option value="price: high-low">price: high-low</option>
-              <option value="price: low-high">price: low-high</option>
-            </select>
+            <div className={styles.price}>
+               <p className={styles.filter_price}>Price</p>
+               <input className={styles.inp_from} type="text" placeholder="from" />
+               <input className={styles.inp_to} type="text" placeholder="to" />
+            </div>
+            
+            <div className={styles.sorted}>
+                   <label className={styles.label_sort} htmlFor="products_select">
+                        Sorted
+                   </label>
+                   <select
+                     className={styles.select_sort}
+                     name="products_select"
+                     id="products_select"
+                   >
+                     <option value="by default">by default</option>
+                     <option value="newest">newest</option>
+                     <option value="price: high-low">price: high-low</option>
+                     <option value="price: low-high">price: low-high</option>
+                  </select>
+            </div>
+            
           </div>
 
 

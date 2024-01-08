@@ -1,18 +1,24 @@
 import styles from "./Filter.module.css"
 
-function Filter({ sort, setSort }) {
+function Filter({ setSort, setCheckbox, setMinPrice, setMaxPrice, minPrice, maxPrice }) {
 
   
 
   return (
     <>
-     <div className={styles.productsPage_filter}>
-                    <p className={styles.filter_price}>Price</p>
-                    <input className={styles.inp_from} type="number" placeholder='from' />
-                    <input className={styles.inp_to} type="number" placeholder='to' />
-                    <label className={styles.label_discount} htmlFor="products_checkbox">Discounted items</label>
-                    <input className={styles.inp_checkbox} id="products_checkbox" type="checkbox"  />
-                    <label className={styles.label_sort} htmlFor="products_select">Sorted</label>
+      <div className={styles.productsPage_filter}>
+         <div className={styles.price}>
+           <p className={styles.filter_price}>Price</p>
+           <input onChange={(e) => setMinPrice(e.target.value)} className={styles.inp_from} type="number" placeholder='from' value={minPrice}/>
+           <input onChange={(e) => setMaxPrice(e.target.value)} className={styles.inp_to} type="number" placeholder='to' value={maxPrice} />
+        </div>
+
+        <div className={styles.discountedItems}>
+           <label className={styles.label_discount} htmlFor="products_checkbox">Discounted items</label>
+           <input onClick={(e)=> setCheckbox(e.target.checked)} className={styles.inp_checkbox} id="products_checkbox" type="checkbox"  />
+        </div> 
+        <div className={styles.sorted}>
+            <label className={styles.label_sort} htmlFor="products_select">Sorted</label>
                     <select onChange={(e) => setSort(e.target.value)} className={styles.select_sort} name="products_select" id="products_select" >
                         <option value="default">by default</option>
                         <option value="low-high">Price (Low to High)</option>
@@ -21,8 +27,11 @@ function Filter({ sort, setSort }) {
                         <option value="titleDesc">Title (Z to A)</option>
 
                     </select>
-                </div>
-    </>
+        </div>            
+                    
+                   
+      </div>
+  </>
   )
 }
 

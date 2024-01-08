@@ -89,3 +89,31 @@ footer {
 }
 
 
+@media (max-width: 768px){
+    .footer_wrapper h3{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px){
+    .footer_wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    .footer_items h2{
+        font-size: 1.2rem;
+    }
+    .footer_wrapper h3{
+        font-size: 1rem;
+    }
+    .footer_wrapper p{
+        font-size: 0.7rem;
+    }
+    .footer_phone, .footer_socials {
+        height: 6rem;
+    }
+    
+    .footer_address, .footer_hours {
+        height: 6rem;
+    }
+}

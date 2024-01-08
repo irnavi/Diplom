@@ -9,15 +9,16 @@ import { addItemCart } from "../../store/slices/cartSlice";
 
 function SingleProductCard({ single_Product }) {
 
+  const dispatch = useDispatch();
+  const cartList = useSelector((state) => state.cart.list);
+  const [localCount, setLocalCount] = useState(1);
  
-const { id, title, image, description, price, discont_price, categoryId} = single_Product;
 
-  
+
+  const { id, title, image, description, price, discont_price, categoryId} = single_Product;
   const categoriesList = useSelector((state) => state.categories.categoriesList);
 
-  const cartList = useSelector((state) => state.cart.list);
- 
-
+  
   const categoryTitle = () => {
     if (categoryId) {
       const matchingCategory = categoriesList.find((elem) => categoryId === elem.id);
@@ -30,14 +31,6 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
   let titleOfCategory = categoryTitle();
 
   
-  const dispatch = useDispatch();
-
-
-
-
-  const [localCount, setLocalCount] = useState(1);
-
-
   const increment = () => {
     setLocalCount(carrentCount => carrentCount + 1)
   }
@@ -50,10 +43,7 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
   }
 
 
-
-
   const addToCart = () => {
-    
     const productInCart = cartList.find((elem) => elem.id === id )
 
     if(productInCart) {
@@ -61,94 +51,131 @@ const { id, title, image, description, price, discont_price, categoryId} = singl
     } else {
       dispatch(addItemCart({ ...single_Product, count: localCount }))
     }
+   
   }
 
   
-
-  
-
     
   return (
-
-    
-
     <section className={styles.singleProductCard}>
       <div key={id} className={styles.container}>
         <div className={styles.categoriesPage_nav}>
-                    <Link to='/'><button className={styles.nav_btn_mainPage}>Main page</button></Link>
-                    <div className={styles.nav_line}></div>
-                    <Link to="/categories"><button className={styles.nav_btn_categories}>Categories</button></Link>
-                    <div className={styles.nav_line}></div>
-                    
-                    <Link to={`/categories/${categoryId}`}><button className={styles.nav_btn_categories}>{titleOfCategory}</button></Link>
+          <Link to="/">
+            <button className={styles.nav_btn_mainPage}>Main page</button>
+          </Link>
+          <div className={styles.nav_line}></div>
+          <Link to="/categories">
+            <button className={styles.nav_btn_categories}>Categories</button>
+          </Link>
+          <div className={styles.nav_line}></div>
 
-                    <div className={styles.nav_line}></div>
-                    <button className={styles.nav_btn_product}>{title}</button>
-                  
-                    
+          <Link to={`/categories/${categoryId}`}>
+            <button className={styles.nav_btn_categories}>
+              {titleOfCategory}
+            </button>
+          </Link>
+
+          <div className={styles.nav_line}></div>
+          <button className={styles.nav_btn_product}>{title}</button>
         </div>
 
-
         <div className={styles.singleProductCard_items}>
-
           <div className={styles.singleProductCard_img}>
-            <img className={styles.img_item}  src={`http://localhost:3333${image}`} alt="" />
+            <img
+              className={styles.img_item}
+              src={`http://localhost:3333${image}`}
+              alt=""
+            />
           </div>
           <div className={styles.singleProductCard_info}>
             <h3 className={styles.headerFromProduct}>{title}</h3>
 
             <div className={styles.pricesFromProduct}>
-
-              <div className={discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
-                <p className={discont_price === null ? styles.prise_sale_none : styles.basicPrice}>
-                  ${discont_price}</p>
+              <div
+                className={
+                  discont_price === null
+                    ? styles.prise_sale_none
+                    : styles.basicPrice
+                }
+              >
+                <p
+                  className={
+                    discont_price === null
+                      ? styles.prise_sale_none
+                      : styles.basicPrice
+                  }
+                >
+                  ${discont_price}
+                </p>
               </div>
 
-              <div className={discont_price === null ? styles.basicPrice : styles.throughPrice}>
-                <p className={discont_price === null ? styles.basicPrice : styles.throughPrice}>
-                  ${price}</p>
+              <div
+                className={
+                  discont_price === null
+                    ? styles.basicPrice
+                    : styles.throughPrice
+                }
+              >
+                <p
+                  className={
+                    discont_price === null
+                      ? styles.basicPrice
+                      : styles.throughPrice
+                  }
+                >
+                  ${price}
+                </p>
               </div>
-              
-              <div className={discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
-                 <p className={discont_price === null ? styles.prise_sale_none : styles.saleFromPrice}>
-                        -{(((price - discont_price) / price) * 100).toFixed(1)}%
-                  </p>
+
+              <div
+                className={
+                  discont_price === null
+                    ? styles.prise_sale_none
+                    : styles.saleFromPrice
+                }
+              >
+                <p
+                  className={
+                    discont_price === null
+                      ? styles.prise_sale_none
+                      : styles.saleFromPrice
+                  }
+                >
+                  -{(((price - discont_price) / price) * 100).toFixed(1)}%
+                </p>
               </div>
             </div>
 
             <div className={styles.btns_from_cart}>
-                <button className={styles.btn_minus} onClick={decrement} ><img src={minus} alt="minus" /></button>
+              <div className={styles.count}>
+                <button className={styles.btn_minus} onClick={decrement}>
+                  <img src={minus} alt="minus" />
+                </button>
 
                 <div className={styles.quantity_of_product}>{localCount}</div>
 
-                <button className={styles.btn_plus} onClick={increment} ><img src={plus} alt="plus" /></button>
+                <button className={styles.btn_plus} onClick={increment}>
+                  <img src={plus} alt="plus" />
+                </button>
+              </div>
 
-                <button className={styles.btn_addToCart} onClick={addToCart}>Add to cart</button>
-
+              <button className={styles.btn_addToCart} onClick={addToCart}>
+                Add to cart
+              </button>
             </div>
 
             <div className={styles.description_items}>
-                  <h4 className={styles.description_header}>Description</h4>
-                  <div className={styles.description_text}>
-                    <p className={styles.text}>
-                      {description}
-                    </p>
-                    <button className={styles.read_more}>
-                      
-                      Read more
-                    </button>
+              <h4 className={styles.description_header}>Description</h4>
+              <div className={styles.description_text}>
+                <p className={styles.text}>{description}</p>
+                <button className={styles.read_more}>Read more</button>
+              </div>
             </div>
           </div>
-          </div>
-          
-
         </div>
       </div>
-     
-      
-        
     </section>
-  )
+  );
 }
 
 export default SingleProductCard

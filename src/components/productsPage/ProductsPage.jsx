@@ -13,6 +13,10 @@ function ProductsPage() {
     const productsList = useSelector((state) => state.products.productsList);
     
     const [sort, setSort] = useState('');
+    const [checkbox, setCheckbox] = useState(false)
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
+    
     
 
     const { id } = useParams();
@@ -41,8 +45,19 @@ function ProductsPage() {
                         <h2 className={styles.h2_text}>All products</h2>
                 </div>
 
-                <Filter sort={sort} setSort={setSort}/>
-                <ProductCard productsList={productsList} sort={sort}/>
+                <Filter  setSort={setSort}
+                 setCheckbox={setCheckbox}
+                 setMinPrice={setMinPrice}
+                 setMaxPrice={setMaxPrice}
+                 minPrice={minPrice}
+                 maxPrice={maxPrice}
+                 
+                 />
+                <ProductCard productsList={productsList}
+                 sort={sort}
+                 checkbox={checkbox}
+                 minPrice={minPrice}
+                 maxPrice={maxPrice}/>
             
                 
             </div>

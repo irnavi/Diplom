@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import styles from './FormFromCart.module.css';
 import { useForm } from 'react-hook-form';
-import orderPost from "../../store/slices/orderPost"
+import { orderPost } from "../../store/slices/orderPost"
 
 
 

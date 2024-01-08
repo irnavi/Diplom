@@ -107,7 +107,7 @@
 }
 
 .product_title {
-    max-width: 100%;
+    width: 100%;
    
 }
 
@@ -160,3 +160,28 @@
 .product_link {
     text-decoration: none;
 }
+
+
+ @media (max-width: 768px){
+    .productsPage_wrapper{
+        grid-template-columns: repeat(3, 1fr)
+    }
+ }
+
+ @media (max-width: 400px){
+    .productsPage_wrapper{
+        grid-template-columns: repeat(2, 50%)
+    }
+    .product_info{
+        width: 9rem;
+    }
+    .title_text{
+        font-size: 0.6rem;
+    }
+    .prise_sale{
+        font-size: 1.5rem;
+    }
+    .prise_default{
+        font-size: 0.8rem;
+    }
+ }

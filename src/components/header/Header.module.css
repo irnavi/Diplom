@@ -103,3 +103,22 @@ header {
 .header_cart img:hover {
     transform: scale(1.3);
 }
+
+
+
+@media (max-width: 400px){
+    .nav_link{
+        font-size: 0.4rem;
+    }
+    .header_navigation ul{
+        gap: 1rem;
+    }
+    .header_logo img{
+        width: 40px;
+        height: 40px;
+    }
+    .header_cart img{
+        width: 35px;
+        height: 38px;
+    }
+}

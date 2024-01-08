@@ -79,6 +79,10 @@
     margin-top: 1.8rem;
     align-items: center;
 }
+.price {
+    display: flex;
+    align-items: center;
+}
 
 .filter_price {
     color: #282828;
@@ -270,4 +274,51 @@
 
 .product_link {
     text-decoration: none;
+}
+
+
+@media (max-width: 768px){
+    .productsPage_wrapper{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .price{
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 400px){
+    .h2_text{
+        font-size: 1.9rem;
+    }
+    .discountedItems_filter{
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 1rem;
+    }
+    .price{
+        display: flex;
+        align-items: end;
+    }
+    .sorted{
+        display: flex;
+        align-items: end;
+    }
+
+    .productsPage_wrapper{
+        grid-template-columns: repeat(2, 50%);
+    }
+    .product_info{
+        width: 9rem;
+    }
+    .title_text{
+        font-size: 0.6rem;
+    }
+    .prise_sale{
+        font-size: 1.5rem;
+    }
+    .prise_default{
+        font-size: 0.8rem;
+    }
 }

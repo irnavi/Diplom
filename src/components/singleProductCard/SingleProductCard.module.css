@@ -62,10 +62,6 @@
     font-weight: 500;
     line-height: 126%;
 
-
-    /* white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; */
 }
 
 .nav_btn_categories:hover {
@@ -295,4 +291,76 @@
     border: none;
     background-color: #fff;
     border-bottom: 1px solid #8B8B8B ;
+}
+.count{
+    display: flex;
+}
+
+
+@media (max-width: 768px){
+    .singleProductCard_img{
+        width: 20rem;
+        height: 21rem;
+    }
+    .singleProductCard_info{
+        width: 20rem;
+    }
+    .headerFromProduct{
+        font-size: 1.5rem;
+    }
+    .count{
+        display: flex;
+    }
+}
+
+@media (max-width: 400px){
+    .singleProductCard_img{
+        width: 9rem;
+        height: 10rem;
+    }
+    .singleProductCard_info{
+        width: 9rem;
+    }
+    .headerFromProduct{
+        font-size: 0.8rem;
+    }
+    .basicPrice{
+        font-size: 1.5rem;
+    }
+    .throughPrice{
+        font-size: 1rem;
+    }
+    .saleFromPrice{
+        font-size: 0.6rem;
+        width: 2rem;
+        height: 1rem;
+    }
+    .count{
+        display: flex;
+    }
+   
+    .btns_from_cart{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .btn_addToCart{
+        width: 8rem;
+        height: 2rem;
+    }
+    
+
+    .nav_btn_mainPage {
+        font-size: 0.7rem;
+    }
+    .nav_btn_categories {
+        font-size: 0.7rem;
+    }
+    .nav_btn_product {
+        font-size: 0.7rem;
+    }
+    .categoriesPage_nav{
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
 }

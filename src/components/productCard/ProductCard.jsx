@@ -8,11 +8,9 @@ import { fetchProducts } from "../../store/slices/productsSlice";
 
 
 
-function ProductCard({ productsList, sort }) {
+function ProductCard({ productsList, sort, checkbox, minPrice, maxPrice }) {
 
-  console.log(productsList)
 
-    
     const visible = true;
     
     const { id } = useParams();
@@ -20,25 +18,43 @@ function ProductCard({ productsList, sort }) {
     const dispatch = useDispatch();
 
   useEffect(() => {
-    if (sort)
+    if (sort || checkbox)
     dispatch(fetchProducts())
-  }, [dispatch, id, sort]);
+  }, [dispatch, id, sort, checkbox]);
 
   const newProducts = productsList ? [...productsList].sort((a, b) => {
     if (sort === 'low-high') {
       return a.price - b.price
     } else if (sort === 'high-low'){
       return b.price - a.price
-    };
+    } else if (sort === 'titleAsc'){
+       return a.title.localeCompare(b.title);
+       } else if (sort === 'titleDesc') {
+        return b.title.localeCompare(a.title);
+        } else {
+          return 0;
+        }
+       } 
+      
+  ) : [];
     
-  }) : [];
+  
     
-    
+  const filteredProducts = newProducts.filter((product) => {
+    const hasDiscount = checkbox && product.discont_price !== null;
+  
+    return (
+      (!checkbox || hasDiscount) &&
+      (!minPrice || product.price >= minPrice) &&
+      (!maxPrice || product.price <= maxPrice)
+    );
+  });
+
 
   return (
     <>
     <div className={styles.productsPage_wrapper}>
-           {newProducts.map((product) => { 
+           {filteredProducts.map((product) => { 
                return <div key={product.id} className={styles.product_card}>
            
                <div className={styles.product_img}>

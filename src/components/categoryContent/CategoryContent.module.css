@@ -206,3 +206,16 @@
 .product_link {
     text-decoration: none;
 }
+
+
+@media (max-width: 768px){
+    .productsPage_wrapper{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 400px){
+    .productsPage_wrapper{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

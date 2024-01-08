@@ -9,7 +9,7 @@
 
 
 .container {
-    max-width: calc(1024px - 5rem);
+    max-width: calc(100% - 5rem);
     margin: 0 auto;
 }
 
@@ -95,3 +95,23 @@ line-height: 110%;
 
 
 
+@media (max-width: 768px){
+    .cartWithItems{
+        flex-direction: column;
+    }
+    .form_items{
+        
+        align-self: flex-start;
+    }
+    .productCart_wrapper{
+        width: 36rem;
+    }
+
+}
+
+@media (max-width: 400px){
+    .form_items{
+        width: 20rem;
+        align-self: flex-start;
+    }
+}

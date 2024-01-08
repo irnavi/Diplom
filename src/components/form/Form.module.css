@@ -64,3 +64,13 @@ input::placeholder {
     color: red;
     font-size: 0.7rem;
 }
+
+
+@media (max-width: 400px){
+    .item_form{
+        width: 17rem;
+    }
+    .discountForm_form{
+        padding-left: 0.5rem;
+    }
+}

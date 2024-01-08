@@ -37,3 +37,32 @@
 .link_carusel {
     text-decoration: none;
 }
+
+
+@media (max-width: 768px){
+    .carusel_item{
+        width: 9rem;
+        height: 10rem;
+    }
+    .carusel_img{
+        width: 9rem;
+        height: 10rem;
+    }
+    .title_text{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px){
+    .carusel_item{
+        width: 4rem;
+        height: 6rem;
+    }
+    .carusel_img{
+        width: 4rem;
+        height: 5rem;
+    }
+    .title_text{
+        font-size: 0.5rem;
+    }
+}

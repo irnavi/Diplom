@@ -89,6 +89,7 @@
 
 .counter {
     width: 3.5rem;
+    height: 2.5rem;
     border-top:  1px solid #DDD;
     border-bottom:  1px solid #DDD;
     text-align: center;
@@ -132,4 +133,41 @@
 
 .pr_style_none {
     display: none;
+}
+.btns {
+    display: flex;
+}
+
+@media (max-width: 768px){
+    .counter{
+        height: 2.5rem;
+    }
+}
+
+
+
+@media (max-width: 400px){
+    .product_prices{
+        
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .btns {
+        display: flex;
+    }
+    .product_title p{
+        font-size: 0.5rem;
+    }
+    .product{
+        flex-direction: column;
+        width: 15rem;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .product_img {
+        width: 15rem;
+    }
+   
 }

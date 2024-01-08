@@ -7,48 +7,49 @@ import { fetchCategories } from "../../store/slices/categoriesSlice";
 import { Link } from "react-router-dom";
 
 function CategoryContent() {
-
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const categoryIdList = useSelector((state) => state.category.categoryIdList);
   const categoryIdListData = categoryIdList?.data || [];
- 
 
-  const categoriesList = useSelector((state) => state.categories.categoriesList);
- 
+  const categoriesList = useSelector(
+    (state) => state.categories.categoriesList
+  );
 
-    
   const categoryTitle = () => {
-    if (categoryIdListData && categoryIdListData[0] && categoryIdListData[0].categoryId) {
-      const matchingCategory = categoriesList.find((elem) => categoryIdListData[0].categoryId === elem.id);
+    if (
+      categoryIdListData &&
+      categoryIdListData[0] &&
+      categoryIdListData[0].categoryId
+    ) {
+      const matchingCategory = categoriesList.find(
+        (elem) => categoryIdListData[0].categoryId === elem.id
+      );
       return matchingCategory ? matchingCategory.title : null;
     }
-    return null; 
+    return null;
   };
-  
-  
+
   let title = categoryTitle();
-  
-  
+
   useEffect(() => {
     dispatch(fetchCategoryId(id));
-    dispatch(fetchCategories())
+    dispatch(fetchCategories());
   }, [dispatch, id]);
-
-  
 
   return (
     <>
       <section className={styles.categoryContent}>
         <div className={styles.container}>
-
           <div className={styles.categoriesPage_nav}>
             <Link to="/">
               <button className={styles.nav_btn_mainPage}>Main page</button>
             </Link>
             <div className={styles.nav_line}></div>
-            <Link to="/categories"><button className={styles.nav_btn_categories}>Categories</button></Link>
+            <Link to="/categories">
+              <button className={styles.nav_btn_categories}>Categories</button>
+            </Link>
             <div className={styles.nav_line}></div>
             <button className={styles.nav_btn_categoryTitle}>{title}</button>
           </div>
