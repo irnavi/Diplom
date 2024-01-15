@@ -1,12 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-const-assign */
 import EmptyBasket from "../emptyBasket/EmptyBasket";
 import HeaderFromCart from "../headerFromCart/HeaderFromCart";
 import ProductCart from "../productCart/ProductCart";
 import styles from "./CartItems.module.css";
 import FormFromCart from "../formFromCart/FormFromCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import close from "../../assets/image/icon-x.svg";
+import { useEffect, useState } from "react";
+import { resetOrderStatus } from "../../store/slices/orderPost";
+import { resetCart } from "../../store/slices/cartSlice";
 
 function CartItems() {
-  const list = useSelector((state) => state.cart.list);
+  let list = useSelector((state) => state.cart.list);
+
+  let status = useSelector((state) => state.order.status);
+
+  const dispatch = useDispatch();
 
   function calculateOrderTotal(items) {
     const total = items.reduce((acc, item) => {
@@ -29,6 +39,18 @@ function CartItems() {
   };
 
   let count = calculateCartCount(list);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    dispatch(resetOrderStatus());
+    dispatch(resetCart());
+  };
+
+  useEffect(() => {
+    setModalOpen(true);
+  }, [status]);
 
   return (
     <section className={styles.cartItems}>
@@ -57,10 +79,29 @@ function CartItems() {
                   <p className={styles.price}>${calculateOrderTotal(list)}</p>
                 </div>
 
-                <FormFromCart />
+                <FormFromCart count={count} />
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          className={
+            status === "fulfilled" && isModalOpen
+              ? styles.modal_container
+              : styles.modal_close
+          }
+        >
+          {isModalOpen && (
+            <div className={styles.modal}>
+              <img src={close} alt="closeX" onClick={handleCloseModal} />
+              <h2>Congratulations</h2>
+              <p>
+                Your order has been successfully placed on the website. A
+                manager will contact you shortly to confirm your order.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

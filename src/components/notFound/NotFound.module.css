@@ -75,3 +75,24 @@
 .notFound_btn:hover {
     transform: scale(1.1);
 }
+
+
+@media (max-width: 400px){
+    .icon4 {
+        width: 70px;
+    }
+    .kaktus_img {
+        width: 150px;
+    }
+    .notFound_h3 {
+        font-size: 2rem;
+    }
+    .notFound_info {
+        width: 20rem;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    } 
+    .notFound_text {
+        font-size: 0.7rem;
+    }
+}

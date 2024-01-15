@@ -18,9 +18,11 @@ function FormFromCart() {
 
    const getDataFromInputs = (data) => {
        reset();
-       dispatch(orderPost(data))
-       
+       dispatch(orderPost(data));
+      
+          
    }
+   
 
 
   return (

@@ -138,6 +138,10 @@
     display: flex;
 }
 
+
+
+
+
 @media (max-width: 768px){
     .counter{
         height: 2.5rem;
@@ -164,7 +168,12 @@
         flex-direction: column;
         width: 15rem;
         height: 100%;
-        margin: 0 auto;
+       margin-left: 3rem;
+      
+    }
+    .product_info{  
+        width: 15rem;
+    
     }
     .product_img {
         width: 15rem;

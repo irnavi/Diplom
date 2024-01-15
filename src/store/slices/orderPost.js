@@ -28,6 +28,12 @@ export const orderSlice = createSlice({
         
         status: null,
     },
+    reducers : {
+        resetOrderStatus: (state) => {
+          state.status = null;
+          
+        },
+      },
 
     extraReducers: (builder) => {
         builder
@@ -35,7 +41,9 @@ export const orderSlice = createSlice({
             state.status = 'pending';
         })
         .addCase(orderPost.fulfilled, (state) => {
+            
             state.status = 'fulfilled';
+           
         })
         .addCase(orderPost.rejected, (state) => {
             state.status = 'rejected';
@@ -45,5 +53,5 @@ export const orderSlice = createSlice({
     }
 })
 
-
+export const { resetOrderStatus } = orderSlice.actions
 export default orderSlice.reducer;

@@ -19,7 +19,10 @@ function Filter({ setSort, setCheckbox, setMinPrice, setMaxPrice, minPrice, maxP
         </div> 
         <div className={styles.sorted}>
             <label className={styles.label_sort} htmlFor="products_select">Sorted</label>
-                    <select onChange={(e) => setSort(e.target.value)} className={styles.select_sort} name="products_select" id="products_select" >
+                    <select onChange={(e) => setSort(e.target.value)} 
+                    className={styles.select_sort} 
+                    name="products_select" 
+                    id="products_select" >
                         <option value="default">by default</option>
                         <option value="low-high">Price (Low to High)</option>
                         <option value="high-low">Price (High to Low)</option>

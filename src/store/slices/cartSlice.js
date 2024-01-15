@@ -27,8 +27,9 @@ const cartSlice = createSlice({
       localStorage.setItem('item',JSON.stringify(state.list))
     },
 
-
-
+    resetCart:  (state) => {
+      state.list.length = 0;
+    },
 
     countPlus(state,action){
       const product = state.list.find(el  =>  el.id === action.payload);
@@ -49,7 +50,7 @@ const cartSlice = createSlice({
       
   if(product.count > 1){
     product.count--
-  }else{
+  } else {
  state.list =  state.list.filter((elem) =>  elem.id !== action.payload)
   }
   localStorage.setItem('item',JSON.stringify(state.list))
@@ -67,5 +68,5 @@ const cartSlice = createSlice({
 })
 
 
-export const { addItemCart,countPlus,countMinus,deleteItem } = cartSlice.actions
+export const { addItemCart, countPlus, countMinus, deleteItem, resetCart } = cartSlice.actions
 export default cartSlice.reducer
