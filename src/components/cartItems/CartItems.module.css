@@ -93,6 +93,7 @@ font-weight: 700;
 line-height: 110%;
 }
 
+
 .modal_container {
     position: fixed;
     left: 0;
@@ -118,6 +119,7 @@ line-height: 110%;
 .modal_close {
     display: none;
 }
+
 
 
 

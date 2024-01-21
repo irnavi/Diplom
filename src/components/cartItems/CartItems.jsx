@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-const-assign */
+
 import EmptyBasket from "../emptyBasket/EmptyBasket";
 import HeaderFromCart from "../headerFromCart/HeaderFromCart";
 import ProductCart from "../productCart/ProductCart";

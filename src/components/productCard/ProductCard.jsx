@@ -1,19 +1,38 @@
+/* eslint-disable no-undef */
 /* eslint-disable array-callback-return */
 import { Link, useParams } from "react-router-dom";
 import styles from "./ProductCard.module.css";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "../../store/slices/productsSlice";
+import { addItemCart, countPlus } from "../../store/slices/cartSlice"
 
 function ProductCard({ productsList, sort, checkbox, minPrice, maxPrice }) {
-  const visible = true;
+  
 
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
+  const cartList = useSelector((state) => state.cart.list);
+  
+  const [localCount, setLocalCount] = useState(1);
+
+  const addToCart = (product) => {
+    const productInCart = cartList.find((elem) => elem.id === id )
+
+    if(productInCart) {
+      dispatch(countPlus({ id:product.id, count: localCount }))
+    } else {
+      dispatch(addItemCart({ ...product, count: localCount }))
+    }
+   
+  }
+
+
   useEffect(() => {
     if (sort || checkbox) dispatch(fetchProducts());
+    setLocalCount(1)
   }, [dispatch, id, sort, checkbox]);
 
   const newProducts = productsList
@@ -74,13 +93,9 @@ function ProductCard({ productsList, sort, checkbox, minPrice, maxPrice }) {
                   </p>
                 </div>
                 <div
-                  className={
-                    visible === false
-                      ? styles.btn_absolute
-                      : styles.hide_btnCart
-                  }
+                  className={styles.btn_addItemCart}
                 >
-                  <button className={styles.addToCart_btn}>Add to cart</button>
+                  <button onClick={() => addToCart(product)} className={styles.addToCart_btn}>Add to cart</button>
                 </div>
               </div>
 

@@ -31,7 +31,13 @@
 
 .addToCart_btn{
      
-        width: 100%;
+    position: absolute;
+    width: 90%;
+    bottom: 0.5rem;
+    left: 6.7rem;
+    display: none;
+    transform: translateX(-50%);
+    cursor: pointer;
         height: 2.5rem;
         border-radius: 0.25rem;
         border: none;
@@ -47,6 +53,14 @@
         line-height: 130%; 
         
         
+}
+
+.product_img:hover .addToCart_btn {
+    display: block;
+}
+
+.addToCart_btn:hover {
+    background-color: black;
 }
 
 .product_img img {
@@ -80,25 +94,11 @@
 
 
 
-.btn_absolute {
-    position: absolute;
-    width: 90%;
-    
-    
-    bottom: 0.5rem;
-    left: 0.7rem;
-}
 
 
 
-.addToCart_btn:hover {
-    background-color: black;
-}
 
 
-.hide_btnCart {
-    display: none;
-}
 
 .product_info {
     width: 11rem;
