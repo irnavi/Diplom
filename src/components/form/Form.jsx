@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./Form.module.css";
 import { useForm } from 'react-hook-form';
 import { salePost } from "../../store/slices/salePost";
@@ -6,6 +6,9 @@ import { salePost } from "../../store/slices/salePost";
 function Form() {
 
     const dispatch = useDispatch();
+
+    const status = useSelector((state) => state.sale.status)
+    console.log(status)
 
     const {
         register,
@@ -70,7 +73,9 @@ function Form() {
                         {errors.email && (
                             <p className={style.errors_text}>{errors.email.message}</p>)}
 
-                        <button className={style.btn_submit} type='submit'>Get a discount</button>
+                        <button className={status === "fulfilled" ? style.btn_submitRequest : style.btn_submit} type='submit'>
+                            {status === "fulfilled" ? "Request Submitted" : "Get a discount"}
+                        </button>
            
             </form>
                     

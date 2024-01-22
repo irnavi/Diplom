@@ -47,7 +47,7 @@ function SingleProductCard({ single_Product }) {
     const productInCart = cartList.find((elem) => elem.id === id )
 
     if(productInCart) {
-      dispatch(countPlus({ id, count: localCount }))
+      dispatch(countPlus({ id:id, count: localCount }))
     } else {
       dispatch(addItemCart({ ...single_Product, count: localCount }))
     }

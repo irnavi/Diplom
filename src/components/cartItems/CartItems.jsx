@@ -5,7 +5,7 @@ import ProductCart from "../productCart/ProductCart";
 import styles from "./CartItems.module.css";
 import FormFromCart from "../formFromCart/FormFromCart";
 import { useDispatch, useSelector } from "react-redux";
-import close from "../../assets/image/icon-x.svg";
+import close from "../../assets/image/icon-modalClose.svg"
 import { useEffect, useState } from "react";
 import { resetOrderStatus } from "../../store/slices/orderPost";
 import { resetCart } from "../../store/slices/cartSlice";
@@ -52,6 +52,7 @@ function CartItems() {
   }, [status]);
 
   return (
+     
     <section className={styles.cartItems}>
       <div className={styles.container}>
         <div className={styles.cart_wrapper}>
@@ -84,7 +85,9 @@ function CartItems() {
           </div>
         </div>
 
-        <div
+        
+      </div>
+      <div
           className={
             status === "fulfilled" && isModalOpen
               ? styles.modal_container
@@ -93,17 +96,26 @@ function CartItems() {
         >
           {isModalOpen && (
             <div className={styles.modal}>
-              <img src={close} alt="closeX" onClick={handleCloseModal} />
-              <h2>Congratulations</h2>
-              <p>
-                Your order has been successfully placed on the website. A
-                manager will contact you shortly to confirm your order.
-              </p>
+              <div className={styles.modal_h}>
+                
+                <h2>Congratulations!</h2>
+                <img src={close} alt="closeX" onClick={handleCloseModal} />
+              </div>
+              
+              <div className={styles.modal_p}>
+                  <p>
+                    Your order has been successfully placed on the website. 
+                  </p>
+                  <p className={styles.p2}>A
+                    manager will contact you shortly to confirm your order.</p>
+              </div>
+             
             </div>
           )}
         </div>
-      </div>
     </section>
+    
+    
   );
 }
 

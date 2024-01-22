@@ -66,6 +66,24 @@ input::placeholder {
 }
 
 
+.btn_submitRequest {
+    width: 100%;
+    height: 2.625rem;
+    margin-top: 0.8rem;
+    
+    border-radius: 0.275rem;
+    color:  #339933;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; 
+    border: none;
+    background: #F1F3F4;
+}
+
+
 @media (max-width: 400px){
     .item_form{
         width: 17rem;
