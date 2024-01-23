@@ -13,8 +13,6 @@ import { fetchCategories } from "./store/slices/categoriesSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "./store/slices/productsSlice";
-
-
 import CategoryContent from "./components/categoryContent/CategoryContent";
 import SingleProduct from "./pages/SingleProduct";
 

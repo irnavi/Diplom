@@ -3,21 +3,17 @@ import styles from "./Header.module.css"
 import logo from "../../assets/image/logo.svg"
 import ic_cart from "../../assets/image/cart_icon.svg"
 import { useSelector } from "react-redux"
+import { calculateCartCount } from "../../utils"
 
 function Header() {
 
 
     const list = useSelector((state) => state.cart.list)
 
-    const calculateCartCount = (cartItems) => {
-        if (!cartItems || cartItems.length === 0) {
-            return 0;
-        }
-        return cartItems.reduce((total, currentItem) => total + currentItem.count, 0);
-      };
+    let count = calculateCartCount(list)
 
-      let count = calculateCartCount(list)
 
+    
     return(
         <header>
             <div className={styles.container}>

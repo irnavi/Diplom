@@ -3,6 +3,8 @@ import style from "./Disc_prod.module.css";
 import { Link } from 'react-scroll';
 
 function DiscountsProducts() {
+
+  
   return (
     <section className={style.discounts_products}>
         <div className={`${style.container} ${style.presentation}`}>

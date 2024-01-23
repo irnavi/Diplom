@@ -9,6 +9,7 @@ import close from "../../assets/image/icon-modalClose.svg"
 import { useEffect, useState } from "react";
 import { resetOrderStatus } from "../../store/slices/orderPost";
 import { resetCart } from "../../store/slices/cartSlice";
+import { calculateCartCount, calculateOrderTotal } from "../../utils";
 
 function CartItems() {
   let list = useSelector((state) => state.cart.list);
@@ -17,26 +18,7 @@ function CartItems() {
 
   const dispatch = useDispatch();
 
-  function calculateOrderTotal(items) {
-    const total = items.reduce((acc, item) => {
-      const price = item.discont_price || item.price;
-      const itemTotal = price * item.count;
-      return acc + itemTotal;
-    }, 0);
-
-    return total.toFixed(2);
-  }
-
-  const calculateCartCount = (cartItems) => {
-    if (!cartItems || cartItems.length === 0) {
-      return 0;
-    }
-    return cartItems.reduce(
-      (total, currentItem) => total + currentItem.count,
-      0
-    );
-  };
-
+  
   let count = calculateCartCount(list);
 
   const [isModalOpen, setModalOpen] = useState(false);
