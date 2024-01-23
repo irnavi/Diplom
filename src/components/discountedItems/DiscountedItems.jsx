@@ -3,9 +3,13 @@ import styles from "./DiscountedItem.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../../store/slices/productsSlice";
+import { addItemCart, countPlus } from "../../store/slices/cartSlice"
 
 function DiscountedItems() {
+
   const productsList = useSelector((state) => state.products.productsList);
+
+  const cartList = useSelector((state) => state.cart.list);
 
   const dispatch = useDispatch();
 
@@ -13,12 +17,29 @@ function DiscountedItems() {
     (product) => product.discont_price !== null
   );
 
+  const [localCount, setLocalCount] = useState(1);
+
   const [sort, setSort] = useState("");
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+
+
+  const addToCart = (product) => {
+    const productInCart = cartList.find((elem) => elem.id === product.id )
+
+    if(productInCart) {
+      dispatch(countPlus({ id:product.id, count: localCount }))
+    } else {
+      dispatch(addItemCart({ ...product, count: localCount }));
+      
+    }
+   
+   
+  }
 
   useEffect(() => {
     sort && dispatch(fetchProducts());
+    setLocalCount(1)
   }, [dispatch, sort]);
 
   const newProducts = discountList
@@ -101,16 +122,12 @@ function DiscountedItems() {
           <div className={styles.productsPage_wrapper}>
             {filteredProducts.map((product) => {
               return (
-                <Link
-                  key={product.id}
-                  to={`/products/${product.id}`}
-                  className={styles.product_link}
-                >
+                
                   <div key={product.id} className={styles.product_card}>
                     <div className={styles.product_img}>
                       <img
                         src={`http://localhost:3333${product.image}`}
-                        alt=""
+                        alt={product.title}
                       />
                       <div
                         className={
@@ -135,8 +152,18 @@ function DiscountedItems() {
                           %
                         </p>
                       </div>
+                      <div
+                  className={styles.btn_addItemCart}
+                >
+                  <button onClick={() => addToCart(product)} className={styles.addToCart_btn}>
+                    Add to cart</button>
+                </div>
                     </div>
-
+                    <Link
+                  key={product.id}
+                  to={`/products/${product.id}`}
+                  className={styles.product_link}
+                >
                     <div className={styles.product_info}>
                       <div className={styles.product_title}>
                         <p className={styles.title_text}>{product.title}</p>
@@ -150,8 +177,9 @@ function DiscountedItems() {
                         >{`$${product.price}`}</p>
                       </div>
                     </div>
+                    </Link>
                   </div>
-                </Link>
+               
               );
             })}
           </div>

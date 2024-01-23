@@ -55,6 +55,9 @@
     padding-left: 0.7rem;
 }
 
+
+
+
 .label_discount {
     color: #282828;
     font-family: Montserrat;
@@ -66,18 +69,51 @@
 }
 
 .inp_checkbox {
-    width: 2rem;
-    height: 1.5rem;
-    border: 1px solid #DDD;
-    border-radius: 0.25rem;
-    background-color: transparent;
-    margin-right: 1.9rem;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
    
 }
 
-input.inp_checkbox:checked {
-    background-color: black;
+.custom_checkbox {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    vertical-align: sub;
+    margin-right: 2rem;
+    margin-left: 1rem;
+   
 }
+
+.custom_checkbox::before {
+    content: '';
+
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #339933;
+    border-radius: 0.25rem;
+    background-image: url("../../assets/image/check.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: scale(0);
+}
+
+.inp_checkbox:checked + .custom_checkbox::before {
+    transform: scale(1);
+}
+
+
+
+
+
+
+
 
 .price{
     display: flex;
@@ -127,14 +163,14 @@ input.inp_checkbox:checked {
     }
     .price{
         display: flex;
-        align-items: end;
+        align-items: flex-end;
     }
     .discountedItems{
         display: flex;
-        align-items: end;
+        align-items: flex-end;
     }
     .sorted{
         display: flex;
-        align-items: end;
+        align-items: flex-end;
     }
 }

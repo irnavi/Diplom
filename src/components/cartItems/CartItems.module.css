@@ -136,6 +136,7 @@ line-height: 110%;
 
 .modal_h img {
     width: 29px;
+    cursor: pointer;
     
 }
 

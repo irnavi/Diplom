@@ -14,8 +14,8 @@ function ProductsPage() {
     
     const [sort, setSort] = useState('');
     const [checkbox, setCheckbox] = useState(false)
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(0);
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
     
     
 

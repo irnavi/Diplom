@@ -12,6 +12,7 @@ function SingleProductCard({ single_Product }) {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cart.list);
   const [localCount, setLocalCount] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
  
 
 
@@ -49,8 +50,10 @@ function SingleProductCard({ single_Product }) {
     if(productInCart) {
       dispatch(countPlus({ id:id, count: localCount }))
     } else {
-      dispatch(addItemCart({ ...single_Product, count: localCount }))
+      dispatch(addItemCart({ ...single_Product, count: localCount }));
+      
     }
+    setAddedToCart(true);
    
   }
 
@@ -84,7 +87,7 @@ function SingleProductCard({ single_Product }) {
             <img
               className={styles.img_item}
               src={`http://localhost:3333${image}`}
-              alt=""
+              alt={title}
             />
           </div>
           <div className={styles.singleProductCard_info}>
@@ -159,8 +162,8 @@ function SingleProductCard({ single_Product }) {
                 </button>
               </div>
 
-              <button className={styles.btn_addToCart} onClick={addToCart}>
-                Add to cart
+              <button className={addedToCart ? styles.addedToCart_btn : styles.btn_addToCart} onClick={addToCart}>
+                {addedToCart ? "Added" : "Add to cart"}
               </button>
             </div>
 

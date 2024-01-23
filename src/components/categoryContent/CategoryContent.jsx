@@ -1,10 +1,11 @@
 import styles from "./CategoryContent.module.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCategoryId } from "../../store/slices/categorySlice";
 import { fetchCategories } from "../../store/slices/categoriesSlice";
 import { Link } from "react-router-dom";
+import { addItemCart, countPlus } from "../../store/slices/cartSlice";
 
 function CategoryContent() {
   const { id } = useParams();
@@ -16,6 +17,20 @@ function CategoryContent() {
   const categoriesList = useSelector(
     (state) => state.categories.categoriesList
   );
+
+  const cartList = useSelector((state) => state.cart.list);
+
+  const [localCount, setLocalCount] = useState(1);
+
+  const addToCart = (product) => {
+    const productInCart = cartList.find((elem) => elem.id === id);
+
+    if (productInCart) {
+      dispatch(countPlus({ id: product.id, count: localCount }));
+    } else {
+      dispatch(addItemCart({ ...product, count: localCount }));
+    }
+  };
 
   const categoryTitle = () => {
     if (
@@ -36,6 +51,7 @@ function CategoryContent() {
   useEffect(() => {
     dispatch(fetchCategoryId(id));
     dispatch(fetchCategories());
+    setLocalCount(1);
   }, [dispatch, id]);
 
   return (
@@ -57,42 +73,51 @@ function CategoryContent() {
           <div className={styles.productsPage_wrapper}>
             {categoryIdListData.map((product) => {
               return (
-                <Link
-                  to={`/products/${product.id}`}
-                  className={styles.product_link}
-                  key={product.id}
-                >
-                  <div key={product.id} className={styles.product_card}>
-                    <div className={styles.product_img}>
-                      <img
-                        src={`http://localhost:3333${product.image}`}
-                        alt=""
-                      />
-                      <div
+                <div key={product.id} className={styles.product_card}>
+                  <div className={styles.product_img}>
+                    <img
+                      src={`http://localhost:3333${product.image}`}
+                      alt={product.title}
+                    />
+                    <div
+                      className={
+                        product.discont_price === null
+                          ? styles.prise_sale_none
+                          : styles.sale_absolute
+                      }
+                    >
+                      <p
                         className={
                           product.discont_price === null
                             ? styles.prise_sale_none
-                            : styles.sale_absolute
+                            : styles.absolute_text
                         }
                       >
-                        <p
-                          className={
-                            product.discont_price === null
-                              ? styles.prise_sale_none
-                              : styles.absolute_text
-                          }
-                        >
-                          -
-                          {(
-                            ((product.price - product.discont_price) /
-                              product.price) *
-                            100
-                          ).toFixed(1)}
-                          %
-                        </p>
-                      </div>
+                        -
+                        {(
+                          ((product.price - product.discont_price) /
+                            product.price) *
+                          100
+                        ).toFixed(1)}
+                        %
+                      </p>
                     </div>
 
+                    <div className={styles.btn_addItemCart}>
+                      <button
+                        onClick={() => addToCart(product)}
+                        className={styles.addToCart_btn}
+                      >
+                        Add to cart
+                      </button>
+                    </div>
+                  </div>
+
+                  <Link
+                    to={`/products/${product.id}`}
+                    className={styles.product_link}
+                    key={product.id}
+                  >
                     <div className={styles.product_info}>
                       <div className={styles.product_title}>
                         <p className={styles.title_text}>{product.title}</p>
@@ -114,8 +139,8 @@ function CategoryContent() {
                         >{`$${product.price}`}</p>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               );
             })}
           </div>

@@ -72,7 +72,10 @@ function ProductCard({ productsList, sort, checkbox, minPrice, maxPrice }) {
           return (
             <div key={product.id} className={styles.product_card}>
               <div className={styles.product_img}>
-                <img src={`http://localhost:3333${product.image}`} alt="" />
+                <img 
+                src={`http://localhost:3333${product.image}`} 
+                alt={product.title} 
+                />
                 <div
                   className={
                     product.discont_price === null

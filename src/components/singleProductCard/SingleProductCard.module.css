@@ -249,11 +249,31 @@
     background-color: #393;
     border: none;
     transition: transform 500ms ease;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%;
 }
 
 .btn_addToCart:hover {
     cursor: pointer;
     transform: scale(1.1);
+    background-color: black;
+}
+
+.addedToCart_btn {
+    width: 59%;
+    border-radius: 0.25rem;
+    background-color: white;
+    color:  #282828;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%;
 }
 
 

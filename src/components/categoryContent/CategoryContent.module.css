@@ -126,6 +126,49 @@
     object-fit: cover;
 }
 
+
+.addToCart_btn{
+     
+    position: absolute;
+    width: 90%;
+    bottom: 0.5rem;
+    left: 6.7rem;
+    display: none;
+    transform: translateX(-50%);
+    cursor: pointer;
+        height: 2.5rem;
+        border-radius: 0.25rem;
+        border: none;
+        cursor: pointer;
+        background-color: #393;
+        color: #FFFFFF;
+    
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 0.9rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 130%; 
+        
+        
+}
+
+.product_img:hover .addToCart_btn {
+    display: block;
+}
+
+.addToCart_btn:hover {
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
 .sale_absolute {
     position: absolute;
     width:3rem;

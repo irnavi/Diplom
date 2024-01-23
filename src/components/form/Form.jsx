@@ -8,7 +8,7 @@ function Form() {
     const dispatch = useDispatch();
 
     const status = useSelector((state) => state.sale.status)
-    console.log(status)
+    
 
     const {
         register,
