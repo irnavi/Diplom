@@ -191,4 +191,7 @@
     .prise_default{
         font-size: 0.8rem;
     }
+    .addToCart_btn {
+        left: 5rem;
+    }
  }
